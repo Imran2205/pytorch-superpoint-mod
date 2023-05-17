@@ -94,7 +94,7 @@ class TestDataset(data.Dataset):
 
     def _init_dataset(self, **config):
         base_path = config['dataset_path']
-        images_path = [x for x in os.listdir(base_path) if not x.startswith('.') and x.endswith('.png')]
+        images_path = [os.path.join(base_path, x) for x in os.listdir(base_path) if not x.startswith('.') and x.endswith('.png')]
         images_path.sort()
         image_paths = images_path[0:-1]
         warped_image_paths = images_path[1:]
