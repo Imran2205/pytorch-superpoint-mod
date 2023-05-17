@@ -125,7 +125,20 @@ def dataLoader_test(config, dataset='syn', warp_input=False, export_task='train'
             num_workers=workers_test,
             worker_init_fn=worker_init_fn
         )
-    # elif dataset == 'Coco' or 'Kitti' or 'Tum':
+    elif dataset == 'test':
+        from datasets.test_dataset import TestDataset
+        if config['data']['preprocessing']['resize']:
+            size = config['data']['preprocessing']['resize']
+        test_set = TestDataset(
+            transform=data_transforms['test'],
+            **config['data'],
+        )
+        test_loader = torch.utils.data.DataLoader(
+            test_set, batch_size=1, shuffle=False,
+            pin_memory=True,
+            num_workers=workers_test,
+            worker_init_fn=worker_init_fn
+        )
     else:
         # from datasets.Kitti import Kitti
         logging.info(f"load dataset from : {dataset}")
