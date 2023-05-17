@@ -66,7 +66,7 @@ class TestDataset(data.Dataset):
             return input_image
 
         def _preprocess(image):
-            s = max(self.sizer /image.shape[:2])
+            # s = max(self.sizer /image.shape[:2])
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
             # image = image[:int(self.sizer[0]/s), :int(self.sizer[1]/s)]
             # image = cv2.resize(image, (self.sizer[1], self.sizer[0]),
