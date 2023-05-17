@@ -43,7 +43,7 @@ class TestDataset(data.Dataset):
         self.files = self._init_dataset(**self.config)
         sequence_set = []
         for (img, img_warped) in zip(self.files['image_paths'], self.files['warped_image_paths']):
-            sample = {'image': img, 'warped_image': img_warped, 'homography': None}
+            sample = {'image': img, 'warped_image': img_warped, 'homography': []}
             sequence_set.append(sample)
         self.samples = sequence_set
         self.transform = transform
@@ -86,7 +86,7 @@ class TestDataset(data.Dataset):
         if to_numpy:
             image, warped_image = np.array(image), np.array(warped_image)
 
-        sample = {'image': image, 'warped_image': warped_image, 'homography': None}
+        sample = {'image': image, 'warped_image': warped_image, 'homography': []}
         return sample
 
     def __len__(self):
