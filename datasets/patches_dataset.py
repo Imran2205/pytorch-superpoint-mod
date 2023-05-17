@@ -42,8 +42,8 @@ class PatchesDataset(data.Dataset):
             sequence_set.append(sample)
         self.samples = sequence_set
         self.transform = transform
-        # if config['preprocessing']['resize']:
-        #     self.sizer = np.array(config['preprocessing']['resize'])
+        if config['preprocessing']['resize']:
+            self.sizer = np.array(config['preprocessing']['resize'])
         pass
 
     def __getitem__(self, index):
@@ -63,9 +63,9 @@ class PatchesDataset(data.Dataset):
         def _preprocess(image):
             s = max(self.sizer /image.shape[:2])
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-            # image = image[:int(self.sizer[0]/s),:int(self.sizer[1]/s)]
-            # image = cv2.resize(image, (self.sizer[1], self.sizer[0]),
-            #                          interpolation=cv2.INTER_AREA)
+            image = image[:int(self.sizer[0]/s),:int(self.sizer[1]/s)]
+            image = cv2.resize(image, (self.sizer[1], self.sizer[0]),
+                                     interpolation=cv2.INTER_AREA)
             image = image.astype('float32') / 255.0
             if image.ndim == 2:
                 image = image[:,:, np.newaxis]
