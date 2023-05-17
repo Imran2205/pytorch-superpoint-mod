@@ -4,7 +4,7 @@ data:
     dataset_path: '/content/localization_test/localization_test/map_10/016/rgb'
     alteration: 'all'  # 'all' 'i' 'v'
     preprocessing:
-        resize: False # [240, 320] for HPatches and False for coco
+        resize: [180, 320]  # [240, 320] for HPatches and False for coco
 #        resize: [480, 640]  # [240, 320] for HPatches and False for coco
     # labels: magicpoint_synth20_homoAdapt100_coco/predictions # for coco
 
