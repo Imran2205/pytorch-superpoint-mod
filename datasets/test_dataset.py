@@ -86,7 +86,13 @@ class TestDataset(data.Dataset):
         if to_numpy:
             image, warped_image = np.array(image), np.array(warped_image)
 
-        sample = {'image': image, 'warped_image': warped_image, 'homography': []}
+        sample = {
+            'image': image,
+            'warped_image': warped_image,
+            'homography': [],
+            'image_name': os.path.basename(sample['image']),
+            'warped_image_name': os.path.basename(sample['warped_image'])
+        }
         return sample
 
     def __len__(self):
